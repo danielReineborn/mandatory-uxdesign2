@@ -3,12 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.9.7",
+    "@material-ui/icons": "^4.9.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.19.2",
+    "focus-trap-react": "^6.0.0",
+    "he": "^1.2.0",
+    "no-scroll": "^2.1.1",
     "react": "^16.13.1",
+    "react-aria-modal": "^4.0.0",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-helmet": "^5.2.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
+    "rxjs": "^6.5.4",
+    "styled-components": "^5.0.1",
+    "typography": "^0.16.19",
+    "uniqid": "^5.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
