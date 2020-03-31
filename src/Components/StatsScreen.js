@@ -31,7 +31,7 @@ export default function StatsScreen() {
   }, [])
 
   return (
-    <Wrapper>
+    <Wrapper role="textbox" tabIndex="0">
       <h1 className="Section__h1">Stats</h1>
       <div className="Section__div">
         <p className="Section__p">Games played: {zeroOrValue(stats$.value.games)}</p>

@@ -75,24 +75,23 @@ export default function Quiz({ location }) {
 
   return (
     <Container id="quiz">
-      <h1>Quiz</h1>
+      <h3 tabIndex="0" aria-label="title" className="Quiz__title">Answer the questions below, make sure all questions are answered.</h3>
       {quiz.length !== 0 ?
-        <form className="Quiz__form" onSubmit={handleSubmit}>
+        <form role="form" className="Quiz__form" onSubmit={handleSubmit}>
           {quiz.map((q, i) => {
-            return <section className="Quiz__container" key={i}>
-              <p role="question" aria-label="question">{`${i + 1}. ${decoder(q.question)}`}</p>
+            return <section role="textbox" className="Quiz__container" key={i}>
+              <p tabIndex="0">{`${i + 1}. ${decoder(q.question)}`}</p>
               {q.aswers.map((ans, idx) => {
                 return (
-                  <div role="textbox" className="Quiz__container--answers" key={i, idx}>
+                  <div className="Quiz__container--answers" key={i, idx}>
                     <input
-
-                      checked={answers[`${i}`] === decoder(ans)}
+                      value={decoder(ans)}
                       onChange={handleChange}
                       required
                       type="radio"
-                      value={decoder(ans)}
                       name={`${i}`}
                       id={`radio-${i}-${idx}`}
+                      checked={answers[`${i}`] === decoder(ans)}
                     />
                     <label htmlFor={`radio-${i}-${idx}`}>{decoder(ans)}</label>
                   </div>

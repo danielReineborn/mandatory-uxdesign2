@@ -40,13 +40,13 @@ export default function Header({ location, toggleSideBar }) {
   }
   return (
     <Head>
-      <button aria-label="Open menu" aria-hidden="true" onClick={onClick} className="header__button">
+      <button tabIndex="0" aria-label="open menu" onClick={onClick} className="header__button">
         <MenuIcon className="header__button--icon" />
       </button>
 
-      <h1 role="title" className="header__h1"></h1>
+      <h1 aria-label="title" className="header__h1"></h1>
 
-      <div className="header__div--shadowDiv"></div>
+      <div aria-hidden="true" className="header__div--shadowDiv"></div>
     </Head>
 
   )

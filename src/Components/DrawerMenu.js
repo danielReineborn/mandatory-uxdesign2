@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import FocusTrap from "focus-trap-react";
 import { Link } from "react-router-dom";
 import AriaModal from "react-aria-modal";
 
@@ -70,6 +69,12 @@ const Sidebar = styled.aside`
     }
   }
 
+  .Sidebar__menu-item__button--invisible {
+    background-color: transparent;
+    border: none;
+
+  }
+
 `
 
 export default function DrawerMenu({ onClickMask, isOpen }) {
@@ -89,17 +94,17 @@ export default function DrawerMenu({ onClickMask, isOpen }) {
 
   return (
     <AriaModal titleText={"menu"} mounted={isOpen} escapeExits={true}>
-      <Sidebar role="menu" onKeyDown={onKeyDown}>
+      <Sidebar role="dialog" onKeyDown={onKeyDown}>
         {isOpen && (
           <label onClick={onClickMask} className="Sidebar__mask">
-            <button aria-label="Close menu" className="Sidebar__mask-button"></button>
+            <button role="close menu" aria-label="Close menu" className="Sidebar__mask-button"></button>
           </label>
         )}
         <div className={className}>
-          <ul className="Sidebar__menu">
-            <li role="navigation" aria-label="link" className="Sidebar__menu-item"><Link className="Sidebar__menu-item-link" onClick={onClickMask} to="/">Home</Link></li>
-            <li role="navigation" aria-label="link" className="Sidebar__menu-item"><Link className="Sidebar__menu-item-link" onClick={onClickMask} to="/stats">Stats</Link></li>
-            <li role="navigation" aria-label="link" className="Sidebar__menu-item"><Link className="Sidebar__menu-item-link" onClick={onClickMask} to="/about">About</Link></li>
+          <ul role="navigation" className="Sidebar__menu">
+            <li aria-label="link" className="Sidebar__menu-item"><Link tabIndex="-1" className="Sidebar__menu-item-link" onClick={onClickMask} to="/"><button className="Sidebar__menu-item__button--invisible" role="button">Home</button></Link></li>
+            <li aria-label="link" className="Sidebar__menu-item"><Link tabIndex="-1" className="Sidebar__menu-item-link" onClick={onClickMask} to="/stats"><button className="Sidebar__menu-item__button--invisible" role="button">Stats</button></Link></li>
+            <li aria-label="link" className="Sidebar__menu-item"><Link tabIndex="-1" className="Sidebar__menu-item-link" onClick={onClickMask} to="/about"><button className="Sidebar__menu-item__button--invisible" role="button">About</button></Link></li>
           </ul>
         </div>
       </Sidebar>

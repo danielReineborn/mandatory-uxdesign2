@@ -39,25 +39,25 @@ export default function Modal({ modal, result, toggleModal, updateScore, restart
 
 
     <AriaModal
-      titleText={"quiz result"}
+      titleText={"dialog"}
       mounted={modal}
       underlayClickExits={false}
       escapeExits={false}
       verticallyCenter={true}
       getApplicationNode={getNode}
     >
-      <ModalContainer>
-        <div>
+      <ModalContainer tabIndex="0">
+        <header>
           <p>Congratulations!</p>
+        </header>
+        <div>
+          <p >Your result is {result}/10</p>
         </div>
         <div>
-          <p>Your result is {result}/10</p>
-        </div>
-        <div>
-          <footer role="footer">
-            <button onClick={onRestart}>Restart</button>
+          <footer>
+            <button role="button" onClick={onRestart}>Restart</button>
 
-            <button onClick={onClose}> Close</button>
+            <button role="button" onClick={onClose}> Close</button>
 
           </footer>
         </div>
