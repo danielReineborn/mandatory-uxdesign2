@@ -23,7 +23,7 @@ const Container = styled.main`
   }
 `
 
-export default function Quiz({ location }) {
+export default function Quiz() {
 
   const [quiz, updateQuiz] = useState([]);
   const [score, updateScore] = useState(0); //Dennna kan jag ta bort när jag har fått ihop nedan.
@@ -34,9 +34,7 @@ export default function Quiz({ location }) {
   useEffect(() => {
     axios.get("https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=multiple")
       .then((response) => {
-        console.log(response);
         response = response.data.results;
-        console.log(quizData(response));
         response = quizData(response);
         updateQuiz(response);
       })
@@ -45,9 +43,7 @@ export default function Quiz({ location }) {
   function restart() {
     fetchData("https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=multiple")
       .then((response) => {
-        console.log(response);
         response = response.data.results;
-        console.log(quizData(response));
         response = quizData(response);
         updateQuiz(response);
       })
@@ -59,14 +55,12 @@ export default function Quiz({ location }) {
     updateScore(score);
 
     let gameStats = { games: 1, correctAnswers: score, questionsTotal: quiz.length, }
-    console.log(answers);
 
     updateStats(gameStats);
     updateModal(true);
   }
 
   function handleChange(e) {
-    console.log(location.pathname)
     updateAnswers({
       ...answers,
       ...{ [e.target.name]: e.target.value },
@@ -75,7 +69,7 @@ export default function Quiz({ location }) {
 
   return (
     <Container id="quiz">
-      <h3 tabIndex="0" aria-label="title" className="Quiz__title">Answer the questions below, make sure all questions are answered.</h3>
+      <h3 tabIndex="0" className="Quiz__title">Answer the questions below, make sure all questions are answered.</h3>
       {quiz.length !== 0 ?
         <form role="form" className="Quiz__form" onSubmit={handleSubmit}>
           {quiz.map((q, i) => {
@@ -83,11 +77,12 @@ export default function Quiz({ location }) {
               <p tabIndex="0">{`${i + 1}. ${decoder(q.question)}`}</p>
               {q.aswers.map((ans, idx) => {
                 return (
-                  <div className="Quiz__container--answers" key={i, idx}>
+                  <div aria-label="answers" className="Quiz__container--answers" key={i, idx}>
                     <input
                       value={decoder(ans)}
                       onChange={handleChange}
                       required
+                      aria-required="true"
                       type="radio"
                       name={`${i}`}
                       id={`radio-${i}-${idx}`}

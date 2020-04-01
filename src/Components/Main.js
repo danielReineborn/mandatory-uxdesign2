@@ -25,7 +25,7 @@ export default function Main() {
   return (
     <Wrapper role="Main">
       <h3 tabIndex="0" aria-label="title" className="Main__title">Welcome player</h3>
-      <p tabIndex="0" aria-label="text" className="Main__text">This is a quiz-game that you can enjoy by yourself or in good company. This is a fully accesible quiz which helps players use a screen reader or just play keyboard only, if thats your reference.</p>
+      <p tabIndex="0" aria-label="text" className="Main__text">This is a quiz-game that you can enjoy by yourself or in good company. This is a fully accessible quiz which helps players use a screenreader or play with keyboard only, if thats your reference.</p>
       <Link tabIndex="-1" to="/quiz"><button role="button">Start Quiz!</button></Link>
     </Wrapper>
 

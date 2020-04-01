@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import MenuIcon from '@material-ui/icons/Menu';
-import { toggleScroll } from "../Utils"
-
+import { withRouter } from "react-router-dom"
+import { firstLetterCapital } from "../Utils";
 
 const Head = styled.header`
   width: 100%;
@@ -31,7 +31,7 @@ const Head = styled.header`
   }
 `
 
-export default function Header({ location, toggleSideBar }) {
+function Header({ location, toggleSideBar }) {
 
   function onClick() {
     toggleSideBar();
@@ -44,10 +44,12 @@ export default function Header({ location, toggleSideBar }) {
         <MenuIcon className="header__button--icon" />
       </button>
 
-      <h1 aria-label="title" className="header__h1"></h1>
+      <h1 aria-label="title" className="header__h1">{location.pathname.slice(1) ? firstLetterCapital(location.pathname.slice(1)) : "Home"}</h1>
 
       <div aria-hidden="true" className="header__div--shadowDiv"></div>
     </Head>
 
   )
 }
+
+export default withRouter(Header);

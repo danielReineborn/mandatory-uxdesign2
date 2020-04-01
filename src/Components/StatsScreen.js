@@ -13,12 +13,13 @@ const Wrapper = styled.section`
   align-items: center;
   flex-flow: column;
 
-  .Section__p {
+  .Stats__p {
     color: #4d4d4d;
     text-align: left;
   }
 
-  .Section__h1 {
+  .Stats__h1 {
+    margin-top: 1rem;
     color: #4d4d4d;
   }
 `
@@ -32,12 +33,12 @@ export default function StatsScreen() {
 
   return (
     <Wrapper role="textbox" tabIndex="0">
-      <h1 className="Section__h1">Stats</h1>
-      <div className="Section__div">
-        <p className="Section__p">Games played: {zeroOrValue(stats$.value.games)}</p>
-        <p className="Section__p">Correct Answers: {zeroOrValue(stats$.value.correctAnswers)}</p>
-        <p className="Section__p">Incorrect Answers: {zeroOrValue((stats$.value.games * 10) - stats$.value.correctAnswers)}</p>
-        <p className="Section__p">Percentage correct: {zeroOrValue(stats$.value.correctAnswers / stats$.value.questionsTotal * 100)}%</p>
+      <h2 className="Stats__h1">Game-statistics:</h2>
+      <div className="Stats__div">
+        <p className="Stats__p">Games played: {zeroOrValue(stats$.value.games)}</p>
+        <p className="Stats__p">Correct Answers: {zeroOrValue(stats$.value.correctAnswers)}</p>
+        <p className="Stats__p">Incorrect Answers: {zeroOrValue((stats$.value.games * 10) - stats$.value.correctAnswers)}</p>
+        <p className="Stats__p">Percentage correct: {zeroOrValue(Math.round(((stats$.value.correctAnswers / stats$.value.questionsTotal * 100) + Number.EPSILON) * 100) / 100)}%</p>
 
 
       </div>
