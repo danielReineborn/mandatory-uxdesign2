@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -26,10 +26,11 @@ const Container = styled.main`
 export default function Quiz() {
 
   const [quiz, updateQuiz] = useState([]);
-  const [score, updateScore] = useState(0); //Dennna kan jag ta bort när jag har fått ihop nedan.
+  const [score, updateScore] = useState(0);
   const [answers, updateAnswers] = useState([]);
   const [modal, updateModal] = useState(false);
 
+  const topRef = useRef();
 
   useEffect(() => {
     axios.get("https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=multiple")
@@ -46,6 +47,7 @@ export default function Quiz() {
         response = response.data.results;
         response = quizData(response);
         updateQuiz(response);
+        topRef.current.focus();
       })
   }
 
@@ -69,7 +71,7 @@ export default function Quiz() {
 
   return (
     <Container id="quiz">
-      <h3 tabIndex="0" className="Quiz__title">Answer the questions below, make sure all questions are answered.</h3>
+      <h3 ref={topRef} tabIndex="0" className="Quiz__title">Answer the questions below, make sure all questions are answered.</h3>
       {quiz.length !== 0 ?
         <form role="form" className="Quiz__form" onSubmit={handleSubmit}>
           {quiz.map((q, i) => {
